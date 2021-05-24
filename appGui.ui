@@ -24,20 +24,16 @@
        <attribute name="title">
         <string>Tab 1</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QTableWidget" name="tableWidget_2"/>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="text">
-             <string>Load Data</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QTableWidget" name="tableWidget"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -47,18 +43,14 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="QTableWidget" name="tableWidget"/>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton">
-            <property name="text">
-             <string>Load Data</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QTableWidget" name="tableWidget_2"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -75,30 +67,30 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuasd">
+   <widget class="QMenu" name="menutab1">
     <property name="title">
-     <string>Tab1</string>
-    </property>
-    <addaction name="actionNie"/>
-   </widget>
-   <widget class="QMenu" name="menuTab2">
-    <property name="title">
-     <string>Tab2</string>
+     <string>tab1</string>
     </property>
     <addaction name="actionTak"/>
    </widget>
-   <addaction name="menuasd"/>
-   <addaction name="menuTab2"/>
+   <widget class="QMenu" name="menutab2">
+    <property name="title">
+     <string>tab2</string>
+    </property>
+    <addaction name="actionNie"/>
+   </widget>
+   <addaction name="menutab1"/>
+   <addaction name="menutab2"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionNie">
-   <property name="text">
-    <string>nie</string>
-   </property>
-  </action>
   <action name="actionTak">
    <property name="text">
-    <string>tak</string>
+    <string>Tak</string>
+   </property>
+  </action>
+  <action name="actionNie">
+   <property name="text">
+    <string>Nie</string>
    </property>
   </action>
  </widget>
