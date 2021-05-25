@@ -1,4 +1,8 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtWidgets import QTableWidgetItem, QFileDialog, QWidget, QTableWidget, QApplication
+import csv
+import pandas as pd
+import os
 
 
 class Ui_MainWindow(object):
@@ -62,13 +66,46 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.pushButton_2.clicked.connect(self.LoadFirstTab)
+        self.pushButton.clicked.connect(self.LoadSecondTab)
+
+
+    def LoadFirstTab(self):
+        with open('klienci.csv', 'r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            self.tableWidget.setRowCount(0)
+            self.tableWidget.setColumnCount(0)
+            for row_number, row_data in enumerate(csv_reader):
+                self.tableWidget.insertRow(row_number)
+                for column_number, data in enumerate(row_data):
+                    self.tableWidget.insertColumn(column_number)
+                    self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+                    print(row_number, column_number)
+                    print(data)
+
+    def LoadSecondTab(self):
+        with open('produkty.csv', 'r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            self.tableWidget_2.setRowCount(0)
+            self.tableWidget_2.setColumnCount(0)
+            for row_number, row_data in enumerate(csv_reader):
+                self.tableWidget_2.insertRow(row_number)
+                for column_number, data in enumerate(row_data):
+                    self.tableWidget_2.insertColumn(column_number)
+                    self.tableWidget_2.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+                    print(row_number, column_number)
+                    print(data)
+
+
+        self.tableWidget.resizeColumnsToContents()
+        self.tableWidget.resizeRowsToContents()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Aplikacja"))
-        self.pushButton_2.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton_2.setText(_translate("MainWindow", "Load Data"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
-        self.pushButton.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton.setText(_translate("MainWindow", "Load Data"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
         self.menutab1.setTitle(_translate("MainWindow", "tab1"))
         self.menutab2.setTitle(_translate("MainWindow", "tab2"))
@@ -78,6 +115,7 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
