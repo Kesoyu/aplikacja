@@ -1,8 +1,27 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QTableWidgetItem, QFileDialog, QWidget, QTableWidget, QApplication
 import csv
-import pandas as pd
-import os
+from PyQt6 import uic
+
+
+class tab1bar(QWidget):
+
+    column_name1 = QtCore.pyqtSignal(int)
+
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('tab1bar.ui', self)
+        self.setWindowTitle('Wyszukaj')
+        self.setcombobox()
+        #self.search1.clicked.connect(self.LoadFirstTab)
+
+    def setcombobox(self):
+        with open('klienci.csv', 'r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            csv_reader = next(csv_reader)
+            for column_number, data in enumerate(csv_reader):
+                self.comboBox.addItem(data, column_number)
+
 
 
 class Ui_MainWindow(object):
@@ -68,6 +87,12 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.pushButton_2.clicked.connect(self.LoadFirstTab)
         self.pushButton.clicked.connect(self.LoadSecondTab)
+        self.actionTak.triggered.connect(self.firstbar)
+
+
+    def firstbar(self):
+        self.tab1bar = tab1bar()
+        self.tab1bar.show()
 
 
     def LoadFirstTab(self):
@@ -77,11 +102,10 @@ class Ui_MainWindow(object):
             self.tableWidget.setColumnCount(0)
             for row_number, row_data in enumerate(csv_reader):
                 self.tableWidget.insertRow(row_number)
-                for column_number, data in enumerate(row_data):
+                for column_number in range(1):
                     self.tableWidget.insertColumn(column_number)
-                    self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+                    self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(row_data[1])))
                     print(row_number, column_number)
-                    print(data)
 
     def LoadSecondTab(self):
         with open('produkty.csv', 'r') as csv_file:
