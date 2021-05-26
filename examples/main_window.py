@@ -3,11 +3,9 @@
 """
 ZetCode PyQt6 tutorial
 https://zetcode.com/pyqt6/menustoolbars/
-
 This program creates a skeleton of
 a classic GUI application with a menubar,
 toolbar, statusbar, and a central widget.
-
 Author: Jan Bodnar
 Website: zetcode.com
 """
