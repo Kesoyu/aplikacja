@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QTableWidgetItem, QFileDialog, QWidget, QTableWidget, QApplication
 import csv
