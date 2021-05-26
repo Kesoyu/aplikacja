@@ -19,13 +19,6 @@ class MyApp(QMainWindow):
 # app = QApplication([])
 app = QApplication(sys.argv)
 app.setStyleSheet('''
-    QWidget{
-        font-size:25px;
-    }
-
-    QPushButton{
-        font-size:10px;
-    }
 ''')
 if __name__ == "__main__":
     window = MyApp()
