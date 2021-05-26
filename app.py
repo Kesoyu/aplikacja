@@ -73,17 +73,29 @@ class Ui_MainWindow(object):
 
 
     def LoadFirstTab(self):
-        with open('klienci.csv', 'r') as csv_file:
-            csv_reader = csv.reader(csv_file)
-            self.tableWidget.setRowCount(0)
-            self.tableWidget.setColumnCount(0)
-            for row_number, row_data in enumerate(csv_reader):
-                self.tableWidget.insertRow(row_number)
-                for column_number, data in enumerate(row_data):
-                    self.tableWidget.insertColumn(column_number)
-                    self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
-                    print(row_number, column_number)
-                    print(data)
+##        with open('klienci.csv', 'r') as csv_file:
+##            csv_reader = csv.reader(csv_file)
+##            self.tableWidget.setRowCount(0)
+##            self.tableWidget.setColumnCount(0)
+##            for row_number, row_data in enumerate(csv_reader):
+##                self.tableWidget.insertRow(row_number)
+##                for column_number, data in enumerate(row_data):
+##                    self.tableWidget.insertColumn(column_number)
+##                    self.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+##                    print(row_number, column_number)
+##                    print(data)
+        # https://geekscoders.com/courses/pyqt6-tutorials/lessons/how-to-create-qtablewidget-with-pyqt6/
+        self.tableWidget.setRowCount(0)
+        self.tableWidget.setColumnCount(3)
+        
+        for row_idx in range(7):
+            self.tableWidget.insertRow(row_idx)#   
+            self.tableWidget.setItem(row_idx, 0, QTableWidgetItem(f"r: {row_idx} c: 0"))
+            self.tableWidget.setItem(row_idx, 1, QTableWidgetItem(f"r: {row_idx} c: 1"))
+            self.tableWidget.setItem(row_idx, 2, QTableWidgetItem(f"r: {row_idx} c: 2"))
+        
+
+
 
     def LoadSecondTab(self):
         with open('produkty.csv', 'r') as csv_file:
