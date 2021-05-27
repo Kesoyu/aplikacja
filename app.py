@@ -38,6 +38,35 @@ class Example(QMainWindow):
         self.pushButton_2.clicked.connect(self.LoadFirstTab)
         self.pushButton.clicked.connect(self.LoadSecondTab)
         self.actionTak.triggered.connect(self.firstbar)
+        self.tab1bar.pushButton.clicked.connect(self.LoadOneTable)
+
+    def LoadOneTable(self):
+        with open('produkty.csv', 'r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            text = self.tab1bar.comboBox.currentText()
+            idx = 20
+            a = 0
+            for row in csv_reader:
+                print(text, row)
+                for a in range(6):
+                    print(a)
+                    if text == row[a]:
+                        idx = a
+                        break
+                break
+            self.tableWidget_2.setRowCount(0)
+            self.tableWidget_2.setColumnCount(1)
+            i = 0
+            # for row_idx in range(7):
+            for row_number, row_data in enumerate(csv_reader):
+                # print(row_data[1])
+                self.tableWidget_2.insertRow(row_number)
+                # for i in range(5):
+                self.tableWidget_2.setItem(row_number, 0, QTableWidgetItem(row_data[idx]))
+                # self.tableWidget_2.setItem(row_number, 1, QTableWidgetItem(row_data[1]))
+                # self.tableWidget_2.setItem(row_number, 2, QTableWidgetItem(row_data[2]))
+                # self.tableWidget_2.setItem(row_number, 3, QTableWidgetItem(row_data[3]))
+                # self.tableWidget_2.setItem(row_number, 4, QTableWidgetItem(row_data[4]))
 
 
     def firstbar(self):
@@ -62,39 +91,13 @@ class Example(QMainWindow):
     def LoadSecondTab(self):
         with open('produkty.csv', 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
-            text = self.tab1bar.comboBox.currentText()
-            idx = 20
-            a = 0
-            for row in csv_reader:
-                print(text, row)
-                for a in range(6):
-                    print(a)
-                    if text == row[a]:
-                        idx = a
-                        break
-                break
-            if idx == 0:
-                self.tableWidget_2.setRowCount(0)
-                self.tableWidget_2.setColumnCount(5)
-                i = 0
-                for row_number, row_data in enumerate(csv_reader):
-                    self.tableWidget_2.insertRow(row_number)
-                    for i in range(5):
-                        self.tableWidget_2.setItem(row_number, i, QTableWidgetItem(row_data[i]))
-            else:
-                self.tableWidget_2.setRowCount(0)
-                self.tableWidget_2.setColumnCount(1)
-                i = 0
-                # for row_idx in range(7):
-                for row_number, row_data in enumerate(csv_reader):
-                    # print(row_data[1])
-                    self.tableWidget_2.insertRow(row_number)
-                    # for i in range(5):
-                    self.tableWidget_2.setItem(row_number, 0, QTableWidgetItem(row_data[idx]))
-                    # self.tableWidget_2.setItem(row_number, 1, QTableWidgetItem(row_data[1]))
-                    # self.tableWidget_2.setItem(row_number, 2, QTableWidgetItem(row_data[2]))
-                    # self.tableWidget_2.setItem(row_number, 3, QTableWidgetItem(row_data[3]))
-                    # self.tableWidget_2.setItem(row_number, 4, QTableWidgetItem(row_data[4]))
+            self.tableWidget_2.setRowCount(0)
+            self.tableWidget_2.setColumnCount(5)
+            i = 0
+            for row_number, row_data in enumerate(csv_reader):
+                self.tableWidget_2.insertRow(row_number)
+                for i in range(5):
+                    self.tableWidget_2.setItem(row_number, i, QTableWidgetItem(row_data[i]))
 
 
 
